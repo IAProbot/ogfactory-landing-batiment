@@ -6,10 +6,20 @@ Source des textes : `mon-business/wiki/concepts/landing-batiment.md`.
 ## Aperçu
 Ouvrir `index.html` dans un navigateur (double-clic).
 
-## Mise en ligne (3 options simples)
-- **Sous-domaine OGFactory** : déposer `index.html` (ex. `batiment.ogfactory.ch` ou `ogfactory.ch/batiment`).
-- **Netlify / Vercel** : glisser le dossier, c'est en ligne en 1 minute.
-- **Hébergeur classique** : uploader `index.html` via FTP.
+## En ligne
+👉 **https://ogfactory.ch/batiment/** (hébergement Hostinger, dossier `public_html/batiment`).
+
+## Redéployer après une modif (SSH/SCP)
+Depuis ce dossier :
+```bash
+scp -P 65002 index.html \
+  u414384509@mc-chemisage.ogfactory.ch:/home/u414384509/domains/ogfactory.ch/public_html/batiment/index.html
+```
+(la clé `~/.ssh/id_ed25519` est autorisée sur le serveur, pas de mot de passe).
+
+## Alternatives
+- GitHub Pages (repo `ogfactory-landing-batiment`) reste un miroir/sauvegarde.
+- Netlify / Vercel : glisser le dossier si besoin d'un staging.
 
 ## À personnaliser ensuite
 - Remplacer le lien "Réserver mon appel" par un vrai agenda (Calendly / Google Agenda).
