@@ -5,86 +5,115 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OGFactory - Solutions IA pour les PME du bâtiment</title>
 <meta name="description" content="Site, chatbot et agent vocal IA pour les entreprises du bâtiment. Ne ratez plus un appel ni une demande de devis, même pendant les chantiers. Livré en 30 jours.">
+<meta name="theme-color" content="#04081a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0f1222;--ink:#1a1f2b;--muted:#5b6473;--line:#e6e9ef;
-    --brand:#11406b;--brand2:#1c6fb8;--accent:#e8a531;--soft:#f5f7fa;--white:#fff;
-    --radius:14px;--maxw:1080px;
+    --bg:#04081a;--bg-2:#060e24;--bg-3:#08142f;
+    --surface:rgba(255,255,255,.035);--surface-2:rgba(255,255,255,.05);
+    --line:rgba(141,172,224,.14);--line-2:rgba(141,172,224,.26);
+    --text:#eaf1fb;--muted:#9fb2d4;--muted-2:#69809f;
+    --cyan:#2ad6ef;--blue:#2f7cf6;--indigo:#5b6cf0;--gold:#f5c863;
+    --grad:linear-gradient(110deg,#2ad6ef 0%,#2f7cf6 60%,#5b6cf0 100%);
+    --grad-soft:linear-gradient(135deg,rgba(42,214,239,.16),rgba(47,124,246,.10));
+    --display:'Archivo Expanded','Archivo',system-ui,sans-serif;
+    --sans:'Archivo',system-ui,-apple-system,sans-serif;
+    --radius:18px;--radius-lg:26px;--maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.6;background:var(--white)}
-  h1,h2,h3{line-height:1.2;color:var(--brand)}
-  h1{font-size:2.4rem;margin:0 0 .5rem;color:#fff}
-  h2{font-size:1.7rem;margin:0 0 1rem}
+  body{margin:0;font-family:var(--sans);color:var(--text);line-height:1.65;background:var(--bg);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--display);line-height:1.12;color:var(--text);letter-spacing:.2px}
+  h1{font-size:2.7rem;margin:0 0 .4rem;font-weight:800}
+  h2{font-size:1.9rem;margin:0 0 1rem;font-weight:700}
+  h3{font-size:1.18rem;margin:0 0 .4rem;font-weight:600}
   p{margin:.4rem 0}
-  a{color:var(--brand2)}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-  .btn{display:inline-block;padding:14px 22px;border-radius:10px;font-weight:600;text-decoration:none;cursor:pointer;border:0;font-size:1rem}
-  .btn-primary{background:var(--accent);color:#1a1200}
-  .btn-primary:hover{filter:brightness(1.06)}
-  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}
-  .btn-ghost:hover{background:rgba(255,255,255,.12)}
-  .btn-dark{background:var(--brand);color:#fff}
-  .btn-dark:hover{background:var(--brand2)}
+  a{color:var(--cyan)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .btn{display:inline-block;padding:15px 26px;border-radius:12px;font-weight:700;font-family:var(--sans);text-decoration:none;cursor:pointer;border:0;font-size:1rem;transition:transform .15s var(--ease),box-shadow .2s var(--ease)}
+  .btn-primary{background:var(--grad);color:#03101f;box-shadow:0 10px 30px rgba(42,214,239,.25)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(42,214,239,.38)}
+  .btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--line-2)}
+  .btn-ghost:hover{border-color:var(--cyan);color:#fff}
+  .btn-dark{background:var(--surface-2);color:var(--text);border:1px solid var(--line)}
+  .btn-dark:hover{border-color:var(--cyan)}
   /* Top bar */
-  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{font-weight:800;color:var(--brand);font-size:1.2rem;letter-spacing:.3px}
-  .logo span{color:var(--accent)}
-  .topbar .btn{padding:10px 16px}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(6,12,30,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .topbar img{height:34px;display:block}
+  .topbar .btn{padding:11px 18px}
   /* Hero */
-  .hero{background:linear-gradient(150deg,#0e3a63,#1c6fb8);color:#fff;padding:72px 0 80px}
-  .hero p.sub{font-size:1.2rem;color:#dfeaf6;max-width:640px}
-  .hero .cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
-  .hero .reassure{margin-top:18px;font-size:.95rem;color:#cfe0f0}
-  .badge{display:inline-block;background:rgba(255,255,255,.14);color:#fff;padding:6px 14px;border-radius:999px;font-size:.85rem;margin-bottom:18px;font-weight:600}
+  .hero{position:relative;overflow:hidden;padding:84px 0 92px;border-bottom:1px solid var(--line)}
+  .hero:before{content:"";position:absolute;inset:0;background:
+    radial-gradient(60% 80% at 15% 0%,rgba(42,214,239,.16),transparent 60%),
+    radial-gradient(50% 70% at 90% 10%,rgba(91,108,240,.18),transparent 60%);
+    pointer-events:none}
+  .hero .wrap{position:relative}
+  .hero p.sub{font-size:1.22rem;color:var(--muted);max-width:660px;margin-top:14px}
+  .hero .cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero .reassure{margin-top:20px;font-size:.95rem;color:var(--muted-2)}
+  .badge{display:inline-block;background:var(--grad-soft);border:1px solid var(--line-2);color:var(--text);padding:7px 16px;border-radius:999px;font-size:.82rem;margin-bottom:22px;font-weight:600;letter-spacing:.3px}
   /* Sections */
-  section.block{padding:64px 0;border-bottom:1px solid var(--line)}
-  section.alt{background:var(--soft)}
-  .lead{font-size:1.1rem;color:var(--muted);max-width:680px}
-  ul.clean{list-style:none;padding:0;margin:18px 0}
-  ul.clean li{padding:10px 0 10px 32px;position:relative}
-  ul.clean li:before{content:"";position:absolute;left:0;top:16px;width:14px;height:14px;border-radius:50%;background:var(--accent)}
+  section.block{padding:70px 0;border-bottom:1px solid var(--line)}
+  section.alt{background:var(--bg-2)}
+  section.alt2{background:var(--bg-3)}
+  .lead{font-size:1.12rem;color:var(--muted);max-width:700px}
+  ul.clean{list-style:none;padding:0;margin:20px 0}
+  ul.clean li{padding:11px 0 11px 34px;position:relative;color:var(--text)}
+  ul.clean li:before{content:"";position:absolute;left:0;top:18px;width:13px;height:13px;border-radius:50%;background:var(--grad);box-shadow:0 0 12px rgba(42,214,239,.5)}
   .grid{display:grid;gap:22px}
   .grid-3{grid-template-columns:repeat(3,1fr)}
-  .grid-2{grid-template-columns:repeat(2,1fr)}
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-  .card.alt{background:var(--soft)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .card h3{color:#fff}
+  .card p{color:var(--muted)}
   /* Steps */
-  .steps{counter-reset:s;display:grid;gap:16px}
-  .step{display:flex;gap:16px;align-items:flex-start}
-  .step .n{flex:0 0 38px;height:38px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .steps{display:grid;gap:16px}
+  .step{display:flex;gap:18px;align-items:flex-start;color:var(--text)}
+  .step .n{flex:0 0 42px;height:42px;border-radius:12px;background:var(--grad-soft);border:1px solid var(--line-2);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--display)}
   /* Pricing */
-  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:24px}
-  .plan{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff;display:flex;flex-direction:column}
-  .plan.feature{border:2px solid var(--accent);box-shadow:0 12px 30px rgba(17,64,107,.12);position:relative}
-  .plan.feature .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#1a1200;font-weight:700;font-size:.78rem;padding:5px 14px;border-radius:999px}
-  .plan .amt{font-size:1.8rem;font-weight:800;color:var(--brand);margin:.2rem 0}
-  .plan .desc{color:var(--muted);font-size:.95rem;min-height:48px}
-  .sub-note{margin-top:22px;background:#fff;border:1px dashed var(--brand2);border-radius:12px;padding:16px 20px}
-  .quote{margin-top:22px;font-style:italic;color:var(--brand);border-left:4px solid var(--accent);padding-left:16px}
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px}
+  .plan{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:var(--surface);display:flex;flex-direction:column}
+  .plan.feature{border:1.5px solid rgba(42,214,239,.6);box-shadow:0 0 0 1px rgba(42,214,239,.15),0 20px 50px rgba(42,214,239,.12);position:relative;background:var(--grad-soft)}
+  .plan.feature .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--grad);color:#03101f;font-weight:800;font-size:.76rem;padding:6px 16px;border-radius:999px;letter-spacing:.4px}
+  .plan h3{color:#fff}
+  .plan .amt{font-size:2rem;font-weight:800;font-family:var(--display);margin:.3rem 0;color:var(--text)}
+  .plan .desc{color:var(--muted);font-size:.96rem;min-height:50px}
+  .plan .btn{margin-top:auto}
+  .sub-note{margin-top:24px;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:18px 22px;color:var(--text)}
+  .sub-note strong{color:var(--gold)}
+  .quote{margin-top:24px;font-style:italic;color:var(--text);border-left:3px solid var(--cyan);padding-left:18px}
   /* Proof */
-  .demos{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
-  .demos a{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-weight:600}
-  .demos a:hover{border-color:var(--brand2)}
-  .voice{background:var(--brand);color:#fff;border-radius:var(--radius);padding:24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:8px}
+  .demos{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+  .demos a{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:13px 18px;text-decoration:none;color:var(--text);font-weight:600}
+  .demos a:hover{border-color:var(--cyan);color:#fff}
+  .voice{background:var(--grad-soft);border:1px solid var(--line-2);border-radius:var(--radius);padding:26px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .voice h3{color:#fff;margin:0 0 4px}
+  .voice p{color:var(--muted);margin:0}
   /* FAQ */
-  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 18px;margin:12px 0}
-  details summary{cursor:pointer;font-weight:600;padding:12px 0;list-style:none}
+  details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin:12px 0}
+  details summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;color:#fff;font-family:var(--display);font-size:1.02rem}
   details summary::-webkit-details-marker{display:none}
-  details[open]{border-color:var(--brand2)}
-  /* CTA + footer */
-  .finalcta{background:linear-gradient(150deg,#0e3a63,#1c6fb8);color:#fff;text-align:center;padding:72px 0}
-  .finalcta h2{color:#fff}
-  .finalcta p{color:#dfeaf6}
-  footer{background:#0d2240;color:#c4d3e6;padding:34px 0;font-size:.92rem}
-  footer a{color:#fff}
-  @media(max-width:820px){
-    h1{font-size:1.9rem}
-    .grid-3,.grid-2,.price{grid-template-columns:1fr}
+  details summary:before{content:"+ ";color:var(--cyan);font-weight:800}
+  details[open] summary:before{content:"- "}
+  details[open]{border-color:var(--line-2)}
+  details p{color:var(--muted);padding-bottom:10px}
+  /* Final CTA + footer */
+  .finalcta{position:relative;overflow:hidden;text-align:center;padding:84px 0;border-bottom:1px solid var(--line)}
+  .finalcta:before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%,rgba(47,124,246,.18),transparent 65%);pointer-events:none}
+  .finalcta .wrap{position:relative}
+  .finalcta p{color:var(--muted)}
+  footer{background:#03060f;color:var(--muted);padding:40px 0;font-size:.92rem}
+  footer img{height:30px;margin-bottom:12px;display:block}
+  footer a{color:var(--text)}
+  @media(max-width:860px){
+    h1{font-size:2rem}h2{font-size:1.5rem}
+    .grid-3,.price{grid-template-columns:1fr}
     .topbar .btn{display:none}
+    .hero{padding:60px 0 66px}
   }
 </style>
 </head>
@@ -92,7 +121,7 @@
 
 <div class="topbar">
   <div class="wrap">
-    <div class="logo">OG<span>Factory</span></div>
+    <a href="https://ogfactory.ch"><img src="https://ogfactory.ch/logo-OGFactory.png" alt="OGFactory"></a>
     <a href="#contact" class="btn btn-primary">Appel gratuit</a>
   </div>
 </div>
@@ -100,7 +129,7 @@
 <header class="hero">
   <div class="wrap">
     <span class="badge">Spécial PME du bâtiment - Suisse romande</span>
-    <h1>Votre entreprise reste joignable,<br>même pendant les chantiers.</h1>
+    <h1>Votre entreprise reste joignable,<br><span class="grad-text">même pendant les chantiers.</span></h1>
     <p class="sub">Site professionnel, chatbot et agent vocal IA qui répondent à vos appels et demandes de devis, qualifient la demande et planifient vos rendez-vous. Livré en 30 jours.</p>
     <div class="cta">
       <a href="#contact" class="btn btn-primary">Réserver mon appel découverte (30 min, gratuit)</a>
@@ -126,7 +155,7 @@
 <section class="block alt">
   <div class="wrap">
     <h2>Un assistant qui ne rate jamais un appel ni une demande.</h2>
-    <div class="grid grid-3" style="margin-top:22px">
+    <div class="grid grid-3" style="margin-top:24px">
       <div class="card"><h3>Site professionnel</h3><p>Rapide, adapté au mobile, pensé pour générer des demandes.</p></div>
       <div class="card"><h3>Chatbot IA 24h/24</h3><p>Répond aux questions courantes : horaires, zones, prestations, délais.</p></div>
       <div class="card"><h3>Agent vocal IA</h3><p>Décroche, comprend la demande, la qualifie et propose un rendez-vous.</p></div>
@@ -134,21 +163,21 @@
       <div class="card"><h3>Demandes de devis</h3><p>Des formulaires simples et efficaces qui captent l'essentiel.</p></div>
       <div class="card"><h3>Livré en 30 jours</h3><p>Opérationnel rapidement, sans engagement initial.</p></div>
     </div>
-    <p class="lead" style="margin-top:24px">Résultat : moins d'appels manqués, moins de temps perdu en administratif, plus de demandes transformées en chantiers.</p>
+    <p class="lead" style="margin-top:26px">Résultat : moins d'appels manqués, moins de temps perdu en administratif, plus de demandes transformées en chantiers.</p>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
     <h2>Voyez ce que ça donne dans votre métier.</h2>
-    <div class="voice">
+    <div class="voice" style="margin-top:18px">
       <div>
         <h3>Écoutez l'agent vocal en situation réelle</h3>
-        <p style="color:#cfe0f0;margin:0">Assistante « Margot », prise de rendez-vous par la voix.</p>
+        <p>Assistante « Margot », prise de rendez-vous par la voix.</p>
       </div>
       <a href="https://mc-chemisage.ogfactory.ch/margot-popup.html" target="_blank" rel="noopener" class="btn btn-primary">Lancer la démo vocale</a>
     </div>
-    <p class="lead" style="margin-top:26px">Exemples de sites par métier :</p>
+    <p class="lead" style="margin-top:28px">Exemples de sites par métier :</p>
     <div class="demos">
       <a href="https://amaron.ogfactory.ch" target="_blank" rel="noopener">Chauffage et énergie</a>
       <a href="https://mc-chemisage.ogfactory.ch" target="_blank" rel="noopener">Canalisations et assainissement</a>
@@ -160,7 +189,7 @@
 <section class="block alt">
   <div class="wrap">
     <h2>Comment ça marche : 30 jours, 5 étapes.</h2>
-    <div class="steps" style="margin-top:22px">
+    <div class="steps" style="margin-top:24px">
       <div class="step"><div class="n">1</div><div><strong>Appel découverte</strong> (30 min, gratuit) : on comprend votre activité et vos besoins.</div></div>
       <div class="step"><div class="n">2</div><div><strong>Conception</strong> (jours 1 à 5) : on dessine votre site et votre assistant.</div></div>
       <div class="step"><div class="n">3</div><div><strong>Développement</strong> (jours 5 à 25) : on construit, vous validez au fur et à mesure.</div></div>
@@ -215,16 +244,16 @@
 <section class="finalcta" id="contact">
   <div class="wrap">
     <h2>Ne perdez plus un seul devis.</h2>
-    <p style="max-width:620px;margin:8px auto 24px">Réservez votre appel découverte gratuit de 30 minutes. On regarde ensemble ce qui peut être mis en place pour votre entreprise.</p>
+    <p style="max-width:640px;margin:10px auto 26px">Réservez votre appel découverte gratuit de 30 minutes. On regarde ensemble ce qui peut être mis en place pour votre entreprise.</p>
     <a href="mailto:info@ogfactory.ch?subject=Appel%20decouverte%20-%20offre%20batiment" class="btn btn-primary">Réserver mon appel (gratuit)</a>
-    <p style="margin-top:20px">info@ogfactory.ch &nbsp;·&nbsp; +41 77 232 39 10</p>
+    <p style="margin-top:22px">info@ogfactory.ch &nbsp;·&nbsp; +41 77 232 39 10</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <strong>OGFactory</strong> - Innovate, Create, Automate<br>
-    Agence IA et automatisation, Lausanne (Suisse romande).<br>
+    <img src="https://ogfactory.ch/logo-OGFactory.png" alt="OGFactory">
+    Innovate, Create, Automate - Agence IA et automatisation, Lausanne (Suisse romande).<br>
     <a href="https://ogfactory.ch">ogfactory.ch</a> &nbsp;·&nbsp; info@ogfactory.ch &nbsp;·&nbsp; +41 77 232 39 10
   </div>
 </footer>
