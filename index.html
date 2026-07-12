@@ -201,6 +201,37 @@
 }
 @media (max-width: 520px) { .ogf-foot .ogf-fgrid { grid-template-columns: 1fr; } }
 
+
+/* ===== Accordéon FAQ (2026-07-12) — <details> natifs, stylés, sans JS ===== */
+#faq .wrap { max-width: 860px; }
+#faq h2 { text-align: center; margin-bottom: 34px; }
+#faq details {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); margin-bottom: 12px; overflow: hidden;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+#faq details:hover { border-color: var(--line-2); }
+#faq details[open] { border-color: var(--cyan); background: var(--grad-soft); }
+#faq summary {
+  list-style: none; cursor: pointer; padding: 20px 56px 20px 22px;
+  font-weight: 600; font-size: 1.02rem; color: var(--text); position: relative;
+  transition: color .2s;
+}
+#faq summary::-webkit-details-marker { display: none; }   /* flèche native retirée */
+#faq summary::before, #faq details[open] summary::before { content: none; }  /* le "+/-" hérité du CSS de la page : on garde le chevron */
+#faq summary:hover { color: var(--cyan); }
+#faq summary::after {                                      /* chevron dessiné en CSS */
+  content: ""; position: absolute; right: 24px; top: 50%;
+  width: 9px; height: 9px; border-right: 2px solid var(--cyan); border-bottom: 2px solid var(--cyan);
+  transform: translateY(-70%) rotate(45deg); transition: transform .3s var(--ease);
+}
+#faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+#faq details > p {
+  margin: 0; padding: 0 22px 22px; color: var(--muted); line-height: 1.7;
+  animation: faq-open .3s var(--ease);
+}
+@keyframes faq-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (max-width: 600px) { #faq summary { padding: 17px 48px 17px 18px; font-size: .97rem; } }
 </style>
 
   <link rel="canonical" href="https://ogfactory.ch/batiment/">
@@ -227,6 +258,46 @@
    "email":"info@ogfactory.ch","telephone":"+41772323910",
    "address":{"@type":"PostalAddress","addressLocality":"Lausanne","addressRegion":"VD","addressCountry":"CH"}}}
   </script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Est-ce compliqué à utiliser ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Non. On installe et on configure tout pour vous, et on forme votre équipe. Vous n'avez rien de technique à gérer."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "L'IA va-t-elle remplacer mes employés ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Non. Elle prend les premières demandes quand personne ne peut répondre, pour que rien ne se perde. L'humain reste au centre."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Et si ça ne me convient pas ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Le prototype est livré en 30 jours, sans engagement. S'il ne vous fait pas gagner de temps de manière tangible, vous ne payez rien."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Mes données sont-elles en sécurité ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Oui. Solutions suisses, hébergement maîtrisé, respect de la confidentialité."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <header class="ogf-nav">
@@ -397,7 +468,7 @@
 
 
 
-<section class="block alt">
+<section class="block alt" id="faq">
   <div class="wrap">
     <h2>Vos questions</h2>
     <details><summary>Est-ce compliqué à utiliser ?</summary><p>Non. On installe et on configure tout pour vous, et on forme votre équipe. Vous n'avez rien de technique à gérer.</p></details>
