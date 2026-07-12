@@ -170,6 +170,37 @@
 
 @media (max-width:880px){.hero{padding-top:150px}}
 @media (max-width:760px){#diagnostic .card{grid-template-columns:1fr!important;gap:28px!important;padding:30px 24px!important}}
+
+/* text-align verrouille : certaines pages (kit-batiment) centrent leur footer,
+   le bloc doit rester identique partout. */
+.ogf-foot { position: relative; z-index: 2; border-top: 1px solid rgba(141,172,224,.14);
+  padding: 64px 0 36px; margin-top: 40px; background: transparent; text-align: left; }
+.ogf-foot .ogf-fgrid > div { text-align: left; }
+.ogf-foot .ogf-fwrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.ogf-foot .ogf-fgrid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; align-items: start; }
+.ogf-foot img.ogf-flogo { height: 96px; width: auto; display: block; }
+.ogf-foot .ogf-blurb { color: #9fb2d4; font-size: 14.5px; max-width: 34ch; margin: 16px 0; line-height: 1.6; }
+.ogf-foot h4 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #69809f; margin: 0 0 14px; }
+.ogf-foot a { color: #9fb2d4; font-size: 14.5px; display: inline-block; padding: 5px 0;
+  text-decoration: none; transition: color .2s; }
+.ogf-foot a:hover { color: #2ad6ef; }
+.ogf-foot .ogf-fcta { font-weight: 700; color: #eaf1fb; display: inline-flex; align-items: center; gap: 8px; }
+.ogf-foot .ogf-fcta:hover { color: #2ad6ef; }
+.ogf-foot .ogf-fcta svg { transition: transform .3s cubic-bezier(.22,.61,.36,1); }
+.ogf-foot .ogf-fcta:hover svg { transform: translateX(4px); }
+.ogf-foot .ogf-tag { display: inline-block; margin-left: 6px; font-size: 10px; font-weight: 800;
+  letter-spacing: .06em; color: #f5c863; background: rgba(245,200,99,.14);
+  border: 1px solid rgba(245,200,99,.4); border-radius: 100px; padding: 1px 7px; vertical-align: middle; }
+.ogf-foot .ogf-fbottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(141,172,224,.14);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  color: #69809f; font-size: 13.5px; }
+@media (max-width: 880px) {
+  .ogf-foot .ogf-fgrid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .ogf-foot .ogf-fwrap { padding: 0 18px; }
+}
+@media (max-width: 520px) { .ogf-foot .ogf-fgrid { grid-template-columns: 1fr; } }
+
 </style>
 
   <link rel="canonical" href="https://ogfactory.ch/batiment/">
@@ -385,16 +416,53 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <img src="https://ogfactory.ch/logo-OGFactory.webp" alt="OGFactory" onerror="this.onerror=null;this.src='https://ogfactory.ch/logo-OGFactory.png'">
-    Innovate, Create, Automate - Agence IA et automatisation, Lausanne (Suisse romande).<br>
-    <a href="https://ogfactory.ch">ogfactory.ch</a> &nbsp;·&nbsp; info@ogfactory.ch
-  
-      <nav style="margin-top:14px;font-size:.92rem;line-height:2;opacity:.85" aria-label="Autres offres OGFactory">
-        <a href="https://ogfactory.ch/services.html">Tous nos services</a> &nbsp;·&nbsp; <a href="https://ogfactory.ch/kit-batiment/">Diagnostic IA · CHF 390</a> &nbsp;·&nbsp; <a href="https://ogfactory.ch/praticiens/">Offre praticiens</a> &nbsp;·&nbsp; <a href="https://ogfactory.ch/aios/">AIOS</a>
-      </nav>
+<footer class="ogf-foot">
+  <div class="ogf-fwrap">
+    <div class="ogf-fgrid">
+
+      <div>
+        <a href="https://ogfactory.ch/" aria-label="OGFactory accueil">
+          <img class="ogf-flogo" src="https://ogfactory.ch/logo-OGFactory.webp" alt="OGFactory"
+               onerror="this.onerror=null;this.src='https://ogfactory.ch/logo-OGFactory.png'">
+        </a>
+        <p class="ogf-blurb">Agence IA &amp; automatisation en Suisse romande.<br>Innovate · Create · Automate.</p>
+        
+        <a class="ogf-fcta" href="#contact">Réserver une consultation gratuite
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <div>
+        <h4>Solutions IA</h4>
+        <a href="https://ogfactory.ch/#services">Chatbots &amp; agents IA</a><br>
+        <a href="https://ogfactory.ch/#services">Automatisation workflows</a><br>
+        <a href="https://ogfactory.ch/#services">Traitement documents IA</a><br>
+        <a href="https://ogfactory.ch/aios/">AIOS</a><br>
+        <a href="https://ogfactory.ch/services.html">Tous nos services</a>
+      </div>
+
+      <div>
+        <h4>Nos offres</h4>
+        <a href="https://ogfactory.ch/batiment/">PME du bâtiment</a><br>
+        <a href="https://ogfactory.ch/praticiens/">Praticiens &amp; instituts</a><br>
+        <a href="https://ogfactory.ch/kit-batiment/">Diagnostic IA<span class="ogf-tag">CHF 390</span></a><br>
+        <a href="https://ogfactory.ch/#process">Notre méthode</a>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+41772323910">+41 77 232 39 10</a><br>
+        <a href="mailto:info@ogfactory.ch">info@ogfactory.ch</a><br>
+        <a href="https://ogfactory.ch/#about">Lausanne, Suisse romande</a><br>
+        <a href="https://ogfactory.ch/#creatif">Tech &amp; Créatif</a>
+      </div>
+
     </div>
+    <div class="ogf-fbottom">
+      <span>© 2026 OGFactory — Tous droits réservés.</span>
+      <span>L'IA au service de votre métier : l'humain reste au centre, la machine s'occupe du répétitif.</span>
+    </div>
+  </div>
 </footer>
 
 <script>
